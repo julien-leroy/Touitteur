@@ -1,0 +1,25 @@
+<div class="row">
+
+    <div class="well well-lg text-center">
+        <h3>Touites correspondant au mot-dièse
+            <strong>
+                <a ng-href="#/motdiese/{{motdiese}}" ng-click="getTouites()">#{{motdiese}}</a>
+            </strong>
+        </h3>
+    </div>
+
+    <div class="row">
+
+        <div class="row" ng-repeat="touite in touites | orderBy:'-time'">
+            <div class="col-lg-offset-2 col-lg-8">
+                <touite content="touite"></touite>
+            </div>
+        </div>
+
+        <div class="row" ng-show="touites === undefined || touites.empty()">
+            Aucun touite contenant ce mot-dièse n'a été trouvé
+        </div>
+
+    </div>
+
+</div>

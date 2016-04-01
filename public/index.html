@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="fr">
+    <meta charset="UTF-8">
+    <title>Touiteur</title>
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <link rel="stylesheet" href="javascript/libs/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="javascript/libs/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="javascript/libs/toastr/toastr.min.css"/>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
+
+    <script src="javascript/libs/jquery/dist/jquery.min.js"></script>
+    <script src="javascript/libs/angular/angular.min.js"></script>
+    <script src="javascript/libs/angular-route/angular-route.min.js"></script>
+    <script src="javascript/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="javascript/libs/angular-strap/dist/angular-strap.min.js"></script>
+    <script src="javascript/libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
+    <script src="javascript/libs/angular-strap/dist/modules/modal.js"></script>
+    <script src="javascript/libs/angular-strap/dist/modules/modal.tpl.min.js"></script>
+    <script src="javascript/libs/toastr/toastr.min.js"></script>
+
+    <script src="javascript/app.js"></script>
+
+    <script src="javascript/directives/touite/touite.js"></script>
+    <script src="javascript/directives/touite/touiteContent.js"></script>
+    <script src="javascript/directives/userResume/userResume.js"></script>
+    <script src="javascript/directives/userInformation/userInformation.js"></script>
+
+    <script src="javascript/filters/range.js"></script>
+
+    <script src="javascript/login/loginModule.js"></script>
+    <script src="javascript/login/loginCtrl.js"></script>
+    <script src="javascript/login/loginService.js"></script>
+
+    <script src="javascript/register/registerModule.js"></script>
+    <script src="javascript/register/registerCtrl.js"></script>
+    <script src="javascript/register/registerService.js"></script>
+
+    <script src="javascript/user/userModule.js"></script>
+    <script src="javascript/user/userCtrl.js"></script>
+    <script src="javascript/user/userService.js"></script>
+
+    <script src="javascript/touitetimeline/touiteTimelineModule.js"></script>
+    <script src="javascript/touitetimeline/touiteTimelineCtrl.js"></script>
+    <script src="javascript/touitetimeline/touiteTimelineService.js"></script>
+
+    <script src="javascript/motdiese/motdieseModule.js"></script>
+    <script src="javascript/motdiese/motdieseCtrl.js"></script>
+    <script src="javascript/motdiese/motdieseService.js"></script>
+
+</head>
+
+<body ng-app="TouiteurApp" ng-controller="MainCtrl">
+
+<nav class="navbar navbar-default" ng-controller="NavbarCtrl">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ng-click="toTimeline()">
+                Touiteur
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" ng-show="isConnected()">
+                <li><a class="btn btn-link" ng-click="logout()">Logout</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search" name="formRechercheMotdiese" ng-show="isConnected()" ng-submit="rechercherMotdiese()">
+                <div class="form-group" ng-class="getRechercheMotdieseClass()">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="# Recherche"
+                               ng-model="motdieseRecherche"
+                               ng-focus="focused = true"
+                               ng-blur="focused = false"
+                               ng-pattern="/^#?\w+$/" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container container-fluid">
+    <div ng-view></div>
+</div>
+
+</body>
+</html>
