@@ -1,5 +1,5 @@
 module.exports = {
-	port : '7000'
+	port : '3000'
 }
 
 // export NODE_ENV=production
