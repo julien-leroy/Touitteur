@@ -21,6 +21,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+    <!-- sweet alert 2 
+    <script src="https://cdn.jsdelivr.net/sweetalert2/0.4.5/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/0.4.5/sweetalert2.css">
+    -->
 
     <!-- Cookie JS -->
     
@@ -32,15 +36,12 @@
 </head>
 
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <img src="images/casoar2.jpg" alt="casoar-icon" class="img-circle"  width="80" height="80">
-        <div class="navbar-header">
-            <a class="navbar-brand" onclick="$('#body').load('about.html');">
-                <h4>Casoer -
-                Tweet louder than birds ! Like a casoar</h4>
-            </a>
+    <div class="container">
+        <div class="col-md-3">
+            <img src="images/img1.jpg" alt="touitts-icon" class="img-circle"  width="80" height="80">
+            <h4 id="userName"></h4>
         </div>
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left col-md-offset-6 col-md-3" role="search">
             <div class="form-group" id="searchBar">
             </div>
         </form>
@@ -73,10 +74,11 @@
                            data : "userid=" + userid + "&followid=" + result[ui.item.value]+ "&cookieuuid=" + cookieuuid,
                            success : function (response){
                                 if(response.result){
-                                    alert('You follow ' +  name);
+                                    alert('Now you follow ' +  name);
                                 }else{
                                     alert('Failed to follow ' + name);
                                 }
+                                loadData();
                             }
                         });
                     }
@@ -108,7 +110,9 @@
                     $('#body').load('login.html');
                 }
            }
-       });
+        });
+
+        $("#userName").text(username);
     });
 </script>
 <div id="body">
