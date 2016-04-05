@@ -15,7 +15,7 @@
 	} 
 	//fonction pour charger le header  
     $(function(){
-		$('#welcome').text('Welcome comrad ' + username);
+		$('#welcome').text('Welcome ' + username);
 		loadData();
     });
 
@@ -124,6 +124,7 @@
 			dataType : 'json',
 			type : 'GET',
 			success : function(resultFoll) {
+				$("#followersCount").text('followers : ' + resultFoll.followers.length);
 				for(var i=0; i<resultFoll.followers.length; i++){
 					$.ajax({
 						url : apiUrl + '/login/' + resultFoll.followers[i],
@@ -147,6 +148,7 @@
 			dataType : 'json',
 			type : 'GET',
 			success : function(resultFoll) {
+				$("#followingsCount").text('followings : ' + resultFoll.followings.length);
 				for(var i=0; i<resultFoll.followings.length; i++){
 					$.ajax({
 						url : apiUrl + '/login/' + resultFoll.followings[i],
@@ -167,27 +169,9 @@
 
 </script>
 <body>
-
-	<div class='row'>
-		<legend class="col-lg-offset-1 col-lg-2 well bs-component"> 
-			<p id="welcome">
-			</p>
-			<button class="btn btn-default" onclick="deconnection()" >Deconnection</button>
-		</legend>
-		<script>
-			function deconnection(){
-				Cookies.remove('cookieuuid');
-                Cookies.remove('username');
-                Cookies.remove('userid');
-                window.location.reload();
-			}
-		</script>
-	</div>
-
-	<div class="row" >
-
+	<div class="container">
 		<!--Liste des followers -->
-		<div class='col-lg-3'>
+		<div class='col-md-3'>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class ="panel-title">Followers</h3>
@@ -200,7 +184,7 @@
 			</div>
 		</div>
 		<!--Livefeed -->
-		<div class='col-lg-5'>
+		<div class='col-md-5'>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class ="panel-title">My followers touitts</h3>
@@ -213,41 +197,24 @@
 			</div>
 		</div>
 
-		<!--Formulaire pour poster un message -->
-		<div class='col-lg-3'>
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class ="panel-title">Touitts</h3>
-				</div>
-				<div class-"panel-body">
-					<div class='col-lg-12'>
-						<h3 class="text-danger" id="myStatus"> </h3>
-					</div>
-				    <div class ='row'>
-				        <div class="col-lg-12">
-				            <div class="well bs-component">
-				                <legend>Something to say ?</legend>
-				            	<form class="form-horizontal" id="postForm">
-
-				                    <div class="form-group">
-
-
-				                        <div class="col-lg-10">
-				                            <input type="text" class="form-control" id="message" name="message" autofocus />
-				                        </div>
-				                    </div>
-				                    <button class="btn btn-primary btn-lg-2" type="button" onclick="postMessage()">Touitte<img src="images/img2.jpg" alt="red-touitts" class="img-circle"  width="80" height="80"></button>
-
-				                </form>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-			</div>
-		</div>
+		<legend class="col-md-3 well bs-component"> 
+			<p id="welcome">
+			</p>
+			<p id="followersCount"></p>
+			<p id="followingsCount"></p>
+			<button class="btn btn-default" onclick="deconnection()" >Deconnection</button>
+		</legend>
+		<script>
+			function deconnection(){
+				Cookies.remove('cookieuuid');
+	            Cookies.remove('username');
+	            Cookies.remove('userid');
+	            window.location.reload();
+			}
+		</script>
 
 		<!--Liste des following -->
-		<div class='col-lg-3'>
+		<div class='col-md-3'>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class ="panel-title">Following</h3>
@@ -261,7 +228,7 @@
 		</div>
 
 		<!-- all Touitts -->
-		<div class='col-lg-9'>
+		<div class='col-md-9'>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class ="panel-title">My Touitts</h3>
@@ -273,23 +240,52 @@
 				</div>
 			</div>
 		</div>
-	    <script>
-	        function postMessage(){
-	           $.ajax({
-	               url : apiUrl + '/posts',
-	               dataType : 'json',
-	               type : 'POST',
-	               data : "userid=" + userid + "&msg=" + $('#message').val() + "&cookieuuid=" + cookieuuid,
-	               success : function (result){
-	               		$('#message').val("");
-						loadData();
-	               }
-	            });
-	        }
-	    </script>
+		<!--Formulaire pour poster un message -->
+		<div class='col-md-3'>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class ="panel-title">Touitts</h3>
+				</div>
+				<div class-"panel-body">
+					<div class='col-md-12'>
+						<h3 class="text-danger" id="myStatus"> </h3>
+					</div>
+				    <div class ='row'>
+				        <div class="col-md-12">
+				            <div class="well bs-component">
+				                <legend>Something to say ?</legend>
+				            	<form class="form-horizontal" id="postForm">
+
+				                    <div class="form-group">
 
 
+				                        <div class="col-md-10">
+				                            <input type="text" class="form-control" id="message" name="message" autofocus />
+				                        </div>
+				                    </div>
+				                    <button class="btn btn-primary btn-lg-2" type="button" onclick="postMessage()">Touitte<img src="images/img2.jpg" alt="red-touitts" class="img-circle"  width="80" height="80"></button>
+
+				                </form>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
 	</div>
-
+    <script>
+        function postMessage(){
+           $.ajax({
+               url : apiUrl + '/posts',
+               dataType : 'json',
+               type : 'POST',
+               data : "userid=" + userid + "&msg=" + $('#message').val() + "&cookieuuid=" + cookieuuid,
+               success : function (result){
+               		$('#message').val("");
+					loadData();
+               }
+            });
+        }
+    </script>
 
 </body>
