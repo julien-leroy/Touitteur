@@ -172,7 +172,7 @@
 	<div class="container">
 		<!--Liste des followers -->
 		<div class='col-md-3'>
-			<div class="panel panel-primary">
+			<div class="panel panel-primary container-fluid">
 				<div class="panel-heading">
 					<h3 class ="panel-title">Followers</h3>
 				</div>
@@ -182,10 +182,47 @@
 					</ul>
 				</div>
 			</div>
+			<div class="panel panel-primary container-fluid">
+				<div class="panel-heading">
+					<h3 class ="panel-title">Following</h3>
+				</div>
+				<div class-"panel-body">
+					<ul class="list-group" id="followingList">
+						<li class="list-group-item"></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<!--Livefeed -->
 		<div class='col-md-5'>
-			<div class="panel panel-primary">
+			<div class="panel-heading well">
+				<h3 class ="panel-title">Live Feed</h3>
+				<div class-"panel-body">
+					<div class='col-md-12'>
+						<h3 class="text-danger" id="myStatus"> </h3>
+					</div>
+				    <div class ='row'>
+				        <div class="col-md-12">
+				            <div class="bs-component">
+				                <legend>Something to say ?</legend>
+				            	<form class="form-horizontal" id="postForm">
+
+				                    <div class="form-group">
+
+
+				                        <div class="col-md-9">
+				                            <input type="text" class="form-control" id="message" name="message" autofocus />
+				                        </div>
+				                    	<button class="btn btn-lg-3" type="button" onclick="postMessage()"><img src="images/img2.jpg" alt="red-touitts" class="img-circle"  width="60" height="60" /></button>
+				                    </div>
+
+				                </form>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+			<div>
 				<div class="panel-heading">
 					<h3 class ="panel-title">My followers touitts</h3>
 				</div>
@@ -197,38 +234,13 @@
 			</div>
 		</div>
 
-		<legend class="col-md-3 well bs-component"> 
-			<p id="welcome">
-			</p>
-			<p id="followersCount"></p>
-			<p id="followingsCount"></p>
-			<button class="btn btn-default" onclick="deconnection()" >Deconnection</button>
-		</legend>
-		<script>
-			function deconnection(){
-				Cookies.remove('cookieuuid');
-	            Cookies.remove('username');
-	            Cookies.remove('userid');
-	            window.location.reload();
-			}
-		</script>
-
-		<!--Liste des following -->
-		<div class='col-md-3'>
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class ="panel-title">Following</h3>
-				</div>
-				<div class-"panel-body">
-					<ul class="list-group" id="followingList">
-						<li class="list-group-item"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!-- all Touitts -->
-		<div class='col-md-9'>
+		<div class='col-md-4'>
+			<legend class="container-fluid well bs-component"> 
+				<p id="welcome"></p>
+				<p id="followersCount"></p>
+				<p id="followingsCount"></p>
+				<button class="btn btn-default" onclick="deconnection()" >Deconnection</button>
+			</legend>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class ="panel-title">My Touitts</h3>
@@ -237,38 +249,6 @@
 					<ul class="list-group" id="myTouittsList" >
 						
 					</ul>
-				</div>
-			</div>
-		</div>
-		<!--Formulaire pour poster un message -->
-		<div class='col-md-3'>
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class ="panel-title">Touitts</h3>
-				</div>
-				<div class-"panel-body">
-					<div class='col-md-12'>
-						<h3 class="text-danger" id="myStatus"> </h3>
-					</div>
-				    <div class ='row'>
-				        <div class="col-md-12">
-				            <div class="well bs-component">
-				                <legend>Something to say ?</legend>
-				            	<form class="form-horizontal" id="postForm">
-
-				                    <div class="form-group">
-
-
-				                        <div class="col-md-10">
-				                            <input type="text" class="form-control" id="message" name="message" autofocus />
-				                        </div>
-				                    </div>
-				                    <button class="btn btn-primary btn-lg-2" type="button" onclick="postMessage()">Touitte<img src="images/img2.jpg" alt="red-touitts" class="img-circle"  width="80" height="80"></button>
-
-				                </form>
-				            </div>
-				        </div>
-				    </div>
 				</div>
 			</div>
 		</div>
@@ -286,6 +266,12 @@
                }
             });
         }
+        function deconnection(){
+			Cookies.remove('cookieuuid');
+            Cookies.remove('username');
+            Cookies.remove('userid');
+            window.location.reload();
+		}
     </script>
 
 </body>
